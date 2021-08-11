@@ -11,6 +11,7 @@ var targetLatencyDisplay = document.querySelector('#targetLatency');
 var targetLatency = 3;
 var videoOnly = false;
 var dashUrl = 'https://akamaibroadcasteruseast.akamaized.net/cmaf/live/657078/akasource/out.mpd';
+var hlsUrl = "https://ll-hls-test.apple.com/cmaf/master.m3u8"
 
 var queryString = getQueryParams();
 
@@ -53,7 +54,7 @@ var conf = {
         preload: false,
     },
     logs: {
-        //level: 'debug'
+        level: 'debug'
     },
     style: {},
     events: {
@@ -98,7 +99,7 @@ var conf = {
     }
 };
 
-var source = { dash: dashUrl };
+var source = { /*dash: dashUrl*/ hls: hlsUrl };
 
 function printBufferLevels() {
     var videoBuffer = Math.round(player.getVideoBufferLength() * 100) / 100;
@@ -152,4 +153,5 @@ function getQueryParams() {
     return queryParams;
 }
 
-$(document).ready(loadPlayer);
+window.onload = loadPlayer;
+//$(document).ready(loadPlayer);
